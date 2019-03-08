@@ -35,9 +35,9 @@ so that `<some reason>`
 
 ## Detailed Description
 
-<!-- Description of the feature request characeristics. -->
+<!-- Description of the feature request characteristics. -->
 
-### Tasks to be completed <!-- list anticiapted work tasks needed, perhaps not complete-->
+### Tasks to be completed <!-- list anticipated work tasks needed, perhaps not complete-->
 
  - [ ] task 1
  - [ ] task 2
@@ -46,7 +46,7 @@ so that `<some reason>`
 
 ### Acceptance Criteria
 <!-- When all these items in this list are checked, the feature will be complete. -->
-<!-- AVOID SCOPE CREAP, modify this list with extream cation -->
+<!-- AVOID SCOPE CREEP, modify this list with extream cation -->
 
  - [ ] A testable behavior that must be accepted by appropriate stakeholder
  - [ ] A testable behavior that must be accepted by appropriate stakeholder
