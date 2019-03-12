@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button{
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-color: white;
+  border-style: solid;
+}
+button:hover{
+	border-style: solid;
+	border-color: black;
+}
+input:hover{
+	border-style: solid;
+	border-color: black;
+}
+.red{
+  background-color: #FF0000; /* Red */
+}
+.green{
+  background-color: #32CD32; /* Green */
+}
+.blue{
+  background-color: #00AAFF; /* Blue */
+}
+.purple{
+  background-color: #C118B8; /*Purple*/
+}
+button.green:active{
+	background-color:#008000; /*Dark Green*/
+}
+button.red:active{
+	background-color:#AA0000; /*Dark Red*/
+}
+button.blue:active{
+	background-color:#0000FF; /*Dark Blue*/
+}
+input.green:active{
+	background-color:#008000; /*Dark Green*/
+}
+input.red:active{
+	background-color:#AA0000; /*Dark Red*/
+}
+input.blue:active{
+	background-color:#0000FF; /*Dark Blue*/
+}
+input.purple:active{
+	background-color:#73116E; /*Dark purple*/
+}
+.clicked{
+	background-color: yellow;
+}
+hr{
+	background-color: white;
+	border: none;
+}
+</style>
+        <!-- use an title value given, or default to the String 'Untitled' -->
+        <title><%= title || 'Untitled'%></title>
+        <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Identify Good Putamen</h1>
+<p><%=file_path%></p>
+<script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+<script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+<script>
+	/*$(selector).on('click', function(){
+		$(selector).removeClass('active');
+		$(this).addClass('active');
+	});*/
+	
+	$("#good_button").on('click', function(){
+		$(this).addClass("input.green:active");
+	});
+
+	$(document).keypress(function(e){
+		if (e.which==103)
+		{
+			// g pressed
+			$("#good_button").click();
+		}
+		if (e.which==98)
+		{
+			// b pressed
+			$("#bad_button").click();
+		}
+		if(e.which==115)
+		{
+			// s pressed
+			$("#save_button").click();
+		}
+		if(e.which==60)
+		{
+			// < pressed ('shift' + ',')
+			$("#back_button").click();
+		}
+		console.log(e.which);
+	});
+	
+	var file_index;
+	display_file_image();
+	var good_file_paths = [];	
+	function store_good_putamen_png()
+	{
+	}
+	function store_bad_putamen_png()
+	{
+		bad_file_paths[bad_file_paths.length] = file_paths[file_path_index];
+		file_path_index++;
+		document.getElementById('display_image').src = file_paths[file_path_index]
+		document.getElementById('file_path').innerHTML = file_paths[file_path_index]
+	}
+
+	function save_progress()
+	{
+	
+	}
+
+	function display_file_image()
+	{
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		file_index = url.searchParams.get("index");
+		document.getElementById("file_path").innerHTML = file_index;
+	}
+	
+</script>
+
+<p>Image: <%=photo_index%> of <%=max_photo_index%></p>
+
+<img action="http://127.0.0.1:8081/get_current_image" method="POST" id=display_image src=<%=file_path%>></img>
+
+<div>
+<form action="Identify_Putamen.html" method="GET" style="display: inline-block;">
+	<input type="text" name="good_or_bad" value="good" style="visibility:hidden; position: absolute; right: 0; top:0">
+	<input type="text" name="current_file_name" value=<%=full_file_path || "done"%> style="visibility:hidden; position:absolute; right:0; top:0"> 
+	<input type="text" name="index" value=<%=photo_index+1 || "done"%> style="visibility:hidden; position:absolute; right:0; top:5">
+	<input  id="good_button" type="submit" value="Good (g)" class="button green">
+</form>
+<form action="Identify_Putamen.html" method="GET" style="display: inline-block;">
+	<input type="text" name="good_or_bad" value="bad" style="visibility:hidden; position: absolute; right: 0; top:0">
+	<input type="text" name="current_file_name" value=<%=full_file_path || "done"%> style="visibility:hidden; position:absolute; right:0; top:0"> 
+	<input type="text" name="index" value=<%=photo_index+1 || "done"%> style="visibility:hidden; position:absolute; right:0; top:10">
+	<input id="bad_button" type="submit" value="Bad (b)" class="button red">
+</form>
+</div>
+
+<form action="Identify_Putamen.html" method="GET">
+	<input type="text" name="back" value="go_back" style="visibility:hidden; position: absolute; right:0; top:30">
+	<input type="text" name="index" value=<%=Math.max(photo_index-1, 0)%> style="visibility:hidden; position:absolute; right:0; top:7">
+	<input id="back_button" type="submit" value="Back (<)" class="button purple">
+</form>
+
+
+<hr/>
+
+<form action = "http://127.0.0.1:8081/write_csv" method="POST" enctype="multipart/form-data">
+	<input id="save_button" type="submit" value="Save Progress (s)" class="button blue"/>
+</form>
+
+</body>
+</html> 
