@@ -4,6 +4,9 @@ A web tool that quickly identifies the quality of input or output data for deep 
 
 ## Setup
 
+(Need to add conda or pip)
+
+
 ## Program Execution
 
 ```bash
