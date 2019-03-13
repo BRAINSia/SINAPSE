@@ -18,7 +18,7 @@ Change the output file name of the identified images (should be a csv)
 const outputFilePath = __dirname + <filepath>
 ```
 
-Change the outputFilePath variable 
+
 
 ## Program Execution
 
