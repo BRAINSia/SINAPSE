@@ -4,7 +4,7 @@ A web tool that quickly identifies the quality of input or output data for deep 
 
 ## Setup
 
-Run the available_putamen_files_to_csv.ipynb script to extract the desired files to a csv file.
+Run the available_putamen_files_to_csv.ipynb function to extract the desired files to a csv file.  Conditions of files extracted and extracting location should be changed in this function.
 
 ```bash
 jupyter notebook
