@@ -14,4 +14,4 @@ Open browser to http://127.0.0.1:8081/Identify_Putamen.html
 
 ## Use of tool
 
-![image]("Identify Good Putamen.png")
+![image]("https://raw.githubusercontent.com/BRAINSia/SINAPSE/master/20190312_IdentifyPutamen/Identify%20Good%20Putamen_Edited.png")
