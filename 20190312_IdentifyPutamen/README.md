@@ -4,6 +4,21 @@ A web tool that quickly identifies the quality of input or output data for deep 
 
 ## Setup
 
+Run the available_putamen_files_to_csv.ipynb script to extract the desired files to a csv file. (Should be made more seemless)
+
+```bash
+jupyter notebook
+```
+
+
+
+Change the output file name of the identified images (should be a csv)
+```javascript
+const outputFilePath = __dirname + <filepath>
+```
+
+Change the outputFilePath variable 
+
 (Need to add conda or pip)
 
 
