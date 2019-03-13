@@ -11,3 +11,7 @@ node server.js
 ```
 
 Open browser to http://127.0.0.1:8081/Identify_Putamen.html
+
+## Use of tool
+
+(!image)["Identify Good Putamen.png"]
