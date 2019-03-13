@@ -4,4 +4,4 @@ A web tool that quickly identifies the quality of input or output data for deep 
 
 ## Setup
 
-## Using the Tool
+## Program Execution
