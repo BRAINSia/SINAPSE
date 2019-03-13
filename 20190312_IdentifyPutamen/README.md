@@ -10,7 +10,8 @@ Run the available_putamen_files_to_csv.ipynb script to extract the desired files
 jupyter notebook
 ```
 
-
+&nbsp;
+&nbsp;
 
 Change the output file name of the identified images (should be a csv)
 ```javascript
