@@ -128,3 +128,6 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/python
+
+# project specific file that is temporarily used to match up images to labels
+sorted_files_for_resizing.csv
