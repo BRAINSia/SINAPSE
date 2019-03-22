@@ -10,7 +10,7 @@
 
 if [[ $# -lt 3 ]]; then
     echo "Correct Usage"
-    echo "${0} <full-path-to-label-dir> <full-path-to-image-directory> <full-path-to-output-dir>"
+    echo "${0} <full-path-to-label-dir> <full-path-to-image-dir> <full-path-to-output-dir>"
     exit -1
 fi
 
