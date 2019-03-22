@@ -10,7 +10,7 @@
 # 4 --> full path to an augmentation file you want to use (not required)
 # 5 --> optional parameter to specify glob to match
 
-if [ $# -lt 4 ]; then
+if [[ $# -lt 4 ]]; then
     echo "Correct Usage"
     echo "${0} <full-path-to-directory-of-images> <full-path-to-output-directory> <is-label ? 1 : 0> <full-path-to-augmentation.json> <optional-glob>"
     exit -1
@@ -23,13 +23,15 @@ AUG_FILE=${4}
 
 GLOB="*"
 
-if [ $# -eq 5 ]; then
+if [[ $# -eq 5 ]]; then
     GLOB=${5}
 fi
 
 for input_file in ${INPUT_DIR}/$GLOB; do
-    echo "Processing: ${input_file}"
-    python main.py -i ${input_file} -o ${OUTPUT_DIR} -l ${IS_LABEL} -a ${AUG_FILE}
+    if [[ -f ${input_file} ]]; then
+        echo "Processing: ${input_file}"
+        python main.py -i ${input_file} -o ${OUTPUT_DIR} -l ${IS_LABEL} -a ${AUG_FILE}
+    fi
 done
 
 
