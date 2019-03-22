@@ -1,4 +1,4 @@
-# ResizeLabelsToImages2D
+# Resize Labels To Images N-d
 > [Alex Powers](mailto:alexander-powers@uiowa.edu?subject=[GitHub]%20SINAPSE%20ResizeLabelsToImages2D)
 
 WARNING: Files must be named such that lexical sort aligns images with the corresponding label
