@@ -23,6 +23,6 @@ pip install SimpleITK
 ## Program Execution
 ```text
 ./resize_images.sh <full-path-to-label-dir> \
-<full-path-to-image-directory> <full-path-to-output-dir>
+<full-path-to-image-dir> <full-path-to-output-dir>
 ```
 Note: The only parameter in the source code is pixel-type at the top of `main.py`
