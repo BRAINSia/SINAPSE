@@ -4,7 +4,10 @@
 
 ## Setup
 
-Use Python 2.7 (conda/pip instructions should be added)
+Create a conda env:
+```bash
+conda env create -f environment.yml
+```
 
 ## Program Execution
 
