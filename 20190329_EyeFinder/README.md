@@ -1,2 +1,17 @@
 # EyeFinder
 > Alex Powers and Chase Johnson
+
+#### Project Motivation
+The goal of this project is to identify the left and right eye from an MRI of the human head.
+
+#### Technologies
+| Framework  |   Docs  | Usage |
+| :-------:  | :------:| :----:|  
+| NiftyNet   | [docs](https://niftynet.readthedocs.io/en/dev/) | Deep Learning for Medical Images| 
+| Tensorflow | [docs](https://www.tensorflow.org/api_docs/python/tf)| Base of NiftyNet |  
+
+#### Environment
+TODO: figure out how to get the optimized deep-learning env into a environment.yml file
+
+#### Helpful Docs
+
