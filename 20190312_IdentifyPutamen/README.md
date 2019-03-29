@@ -18,6 +18,11 @@ Change the output file name of the identified images (should be a csv)
 const outputFilePath = __dirname + <filepath>
 ```
 
+Install node dependencies
+
+```bash
+npm install
+```
 
 
 ## Program Execution
