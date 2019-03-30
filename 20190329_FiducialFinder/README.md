@@ -1,4 +1,4 @@
-# EyeFinder
+# Fiducial Finder
 > Alex Powers and Chase Johnson
 
 #### Project Motivation
