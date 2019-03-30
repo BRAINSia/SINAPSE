@@ -1,3 +1,3 @@
-[submodule "20190329_EyeFinder/NiftyNet"]
-	path = 20190329_EyeFinder/NiftyNet
+[submodule "20190329_FiducialFinder/NiftyNet"]
+	path = 20190329_FiducialFinder/NiftyNet
 	url = git@github.com:NifTK/NiftyNet.git
