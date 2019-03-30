@@ -14,4 +14,4 @@ The goal of this project is to identify the left and right eye from an MRI of th
 TODO: figure out how to get the optimized deep-learning env into a environment.yml file
 
 #### Helpful Docs
-
+[git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
