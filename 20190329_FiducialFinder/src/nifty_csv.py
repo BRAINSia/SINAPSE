@@ -19,6 +19,15 @@ INFERENCE_PERCENTAGE = 0.1
 # if this isn't the case when we get the data, we can adjust this method
 
 def generate_csvs(data_dir: str, image_t1_glob: str, image_t2_glob: str, label_csv_glob: str, output_dir: str) -> None:
+    """
+
+    :param data_dir: the base directory containing all of the data
+    :param image_t1_glob: a glob that uniquely identifies t1 images
+    :param image_t2_glob: a glob that uniquely identifies t2 images
+    :param label_csv_glob: a glob that uniquely identifies label csvs/fcsvs
+    :param output_dir: the directory to write the new niftynet csvs to
+    :return:
+    """
     # load file names
     images_t1 = glob(join(data_dir, image_t1_glob))
     images_t2 = glob(join(data_dir, image_t2_glob))
@@ -96,7 +105,6 @@ def generate_csvs(data_dir: str, image_t1_glob: str, image_t2_glob: str, label_c
     data_split_csv.close()
 
     return
-
 
 # run this file independently to test functions
 # if __name__ == '__main__':

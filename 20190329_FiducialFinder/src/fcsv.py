@@ -6,6 +6,11 @@ from utils import get_fiducial_list
 # functions for fcsv manipulation and fiducial data extraction
 # ############################################################
 def get_fiducials_from_file(fcsv_file: str) -> dict:
+    """
+
+    :param fcsv_file: fcsv file to extract fiducial points from
+    :return: dictionary { fiducial_name -> [ x, y, z ] }
+    """
     fiducial_points = {}
 
     # this read_csv likely needs more parameters
