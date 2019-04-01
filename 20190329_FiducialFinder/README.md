@@ -15,11 +15,13 @@ TODO: figure out how to get the optimized deep-learning env into a environment.y
 
 ```bash
 # Get the NiftyNet Submodule for the first time
-git submodule update --init --recursive && git checkout dev
+git submodule update --init --recursive 
+cd 20190329_FiducialFinder/NiftyNet/
+git checkout dev && git pull
 # otherwise
 cd 20190329_FiducialFinder/NiftyNet/ && git pull
 ```
 
 #### Helpful Docs
-[git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) .     
+[git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) .
 [coursera landmark detection video](https://www.coursera.org/lecture/convolutional-neural-networks/landmark-detection-OkD3X)
