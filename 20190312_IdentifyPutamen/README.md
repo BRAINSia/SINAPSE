@@ -10,9 +10,6 @@ Run the available_putamen_files_to_csv.py function to extract the desired files 
 python available_putamen_files_to_csv.py
 ```
 
-&nbsp;
-&nbsp;
-
 IF NEEDED, Change the output file name of the identified images in server.js (should be a csv)
 ```javascript
 const outputFilePath = __dirname + <filepath>
