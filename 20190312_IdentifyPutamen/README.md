@@ -13,7 +13,7 @@ python available_putamen_files_to_csv.py
 &nbsp;
 &nbsp;
 
-Change the output file name of the identified images (should be a csv)
+IF NEEDED, Change the output file name of the identified images in server.js (should be a csv)
 ```javascript
 const outputFilePath = __dirname + <filepath>
 ```
