@@ -22,6 +22,13 @@ git checkout dev && git pull
 cd 20190329_FiducialFinder/NiftyNet/ && git pull
 ```
 
+### Starting your own network
+```bash
+# setup the structure for your network
+cd 20190329_FiducialFinder/
+./scripts/add-network.sh my_new_network
+```
+
 #### Helpful Docs
 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) .
 [coursera landmark detection video](https://www.coursera.org/lecture/convolutional-neural-networks/landmark-detection-OkD3X)
