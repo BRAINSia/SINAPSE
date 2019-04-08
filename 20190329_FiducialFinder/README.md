@@ -13,13 +13,19 @@ The goal of this project is to identify the left and right eye from an MRI of th
 #### Environment
 TODO: figure out how to get the optimized deep-learning env into a environment.yml file
 
+Clone the BRAINSia/NiftyNet repo, this is where we will be doing our work to add landmark detection features
 ```bash
-# Get the NiftyNet Submodule for the first time
-git submodule update --init --recursive 
-cd 20190329_FiducialFinder/NiftyNet/
-git checkout dev && git pull
-# otherwise
-cd 20190329_FiducialFinder/NiftyNet/ && git pull
+cd ~
+git clone git@github.com:BRAINSia/NiftyNet.git
+cd NiftyNet && git checkout landmark_app
+
+```
+
+### Starting your own network
+```bash
+# setup the structure for your network
+cd 20190329_FiducialFinder/
+./scripts/add-network.sh my_new_network
 ```
 
 #### Helpful Docs
