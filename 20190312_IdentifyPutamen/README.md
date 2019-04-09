@@ -39,3 +39,13 @@ Looking at the black and white image, determine if it is good or bad and click t
 If a mistake was made, the back button returns to a previous image (shortcut is '<' i.e. 'SHIFT' + ',')
 
 To save all identified images to a file, click the Save Progress button (shortcut 's')
+
+## Results
+
+After using the web tool to identify 56 flagged (bad) files, I opened each of them in Slicer to give a more detailed inspection.  The final evaluations were documented in manually_evaluated_identified_putamen.csv.  As we can see from this file, the following files were the only ones considered unfit for use in Deep Learning Models.
+
+* /Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0008s0018_c0008s0018t01_lr_combined_dense_seg.nii.gz
+* /Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0004s0020_c0004s0020t01_lr_combined_dense_seg.nii.gz
+* /Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0011s0003_c0011s0003t01_lr_combined_dense_seg.nii.gz
+* /Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0009s0002_c0009s0002t01_lr_combined_dense_seg.nii.gz
+* /Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0009s0009_c0009s0009t01_lr_combined_dense_seg.nii.gz
