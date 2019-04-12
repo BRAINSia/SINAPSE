@@ -46,7 +46,7 @@ so that `<some reason>`
 
 ### Acceptance Criteria
 <!-- When all these items in this list are checked, the feature will be complete. -->
-<!-- AVOID SCOPE CREEP, modify this list with extream cation -->
+<!-- AVOID SCOPE CREEP, modify this list with extreme cation -->
 
  - [ ] A testable behavior that must be accepted by appropriate stakeholder
  - [ ] A testable behavior that must be accepted by appropriate stakeholder
