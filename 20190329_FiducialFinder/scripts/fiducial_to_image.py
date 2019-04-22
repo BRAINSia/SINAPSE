@@ -3,39 +3,72 @@ import pandas as pd
 import os
 import numpy as np
 import argparse
+import json
+from collections import OrderedDict
 
 
 def f2I(img, fid):
     ind = img.TransformPhysicalPointToIndex(fid)
-    ind = np.reshape(ind, (3,1))
+    ind = np.reshape(ind, (3, 1))
     out_img = sitk.GetImageFromArray(ind)
     return out_img
 
 
-def get_array_from_fiducial(directory, identifier):
-    fcsv=pd.read_csv(os.path.join(directory, '{identifier}.fcsv'.format(identifier=identifier)), comment='#', header=None)
+def extract_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--fcsv", help="The path to the .fcsv file", required=True)
+    parser.add_argument("-i", "--image", help="The image for fcsv locations", required=True)
+    return parser.parse_args()
+
+
+def extract_fiducials(path):
+    points = OrderedDict()
+    fcsv = pd.read_csv(path, comment='#', header=None)
     fcsv[1] = -fcsv[1]
     fcsv[2] = -fcsv[2]
-    LE = fcsv.loc[fcsv[0] == 'LE'].values[0][1:4] # physical point 3-tuple of left eye
+    with open("./fiducials.json", 'rb') as f:
+        pts = json.load(f)['fiducials']
+    for pt in pts:
+        points[pt] = fcsv.loc[fcsv[0] == pt].values[0][1:4]
+    return points
 
-    LE = np.array(LE)
-    return LE
+
+def fiducials_to_image(fiducial_points, image_file_name):
+    pt_list = []
+    image = sitk.ReadImage(image_file_name)
+    for pt in fiducial_points.values():
+        pt_list += image.TransformPhysicalPointToIndex(pt)
+
+    print(pt_list)
+    arr = np.array(pt_list)
+    arr = np.reshape(arr, (-1, 1))
+    print(arr)
+    return sitk.GetImageFromArray(arr)
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path")
-    args = parser.parse_args()
+def main(argv):
+    # input: ../SmallData/0001_27588.fcsv
 
-    img = "0001_27588_t1w.nii.gz"
-    identifier = "0001_27588"
-    in_img = sitk.ReadImage(os.path.join("../SmallData", img))
-    LE = get_array_from_fiducial("../SmallData", identifier)
-    resulting_image = f2I(in_img, LE)
-    sitk.WriteImage(resulting_image, os.path.join("../SmallData", '{identifier}_LE.nii.gz'.format(identifier=identifier)))
+    # something for ../SmallData
+    # something for 0001_27588_t1w.nii.gz
 
+    print(argv)
+    base, _ = os.path.splitext(argv.fcsv)
+
+    fiducial_points = extract_fiducials(argv.fcsv)
+    print(fiducial_points)
+
+    output_image = fiducials_to_image(fiducial_points, argv.image)
+    with open("./fiducials.json", 'rb') as f:
+        pts = json.load(f)['fiducials']
+
+    output_file_name = "{base}_{fids}.nii.gz".format(base=base, fids="_".join(pts))
+    print("Writing to " + output_file_name)
+    sitk.WriteImage(output_image, output_file_name)
+    # print(sitk.GetArrayFromImage(output_image))
+    im = sitk.ReadImage(output_file_name)
+    print(sitk.GetArrayFromImage(im))
 
 
 if __name__ == "__main__":
-
-    main()
+    main(extract_args())
