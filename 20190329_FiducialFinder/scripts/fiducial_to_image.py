@@ -5,14 +5,11 @@ import numpy as np
 import argparse
 import json
 from collections import OrderedDict
+import logging
 
+fiducials_json_path = "./fiducials.json"
 
-def f2I(img, fid):
-    ind = img.TransformPhysicalPointToIndex(fid)
-    ind = np.reshape(ind, (3, 1))
-    out_img = sitk.GetImageFromArray(ind)
-    return out_img
-
+logger = logging.Logger("failed_conversions.log", level=logging.DEBUG)
 
 def extract_args():
     parser = argparse.ArgumentParser()
@@ -26,7 +23,7 @@ def extract_fiducials(path):
     fcsv = pd.read_csv(path, comment='#', header=None)
     fcsv[1] = -fcsv[1]
     fcsv[2] = -fcsv[2]
-    with open("./fiducials.json", 'rb') as f:
+    with open(fiducials_json_path, 'rb') as f:
         pts = json.load(f)['fiducials']
     for pt in pts:
         points[pt] = fcsv.loc[fcsv[0] == pt].values[0][1:4]
@@ -37,38 +34,75 @@ def fiducials_to_image(fiducial_points, image_file_name):
     pt_list = []
     image = sitk.ReadImage(image_file_name)
     for pt in fiducial_points.values():
+        print("pt = " + str(pt))
         pt_list += image.TransformPhysicalPointToIndex(pt)
 
-    print(pt_list)
     arr = np.array(pt_list)
     arr = np.reshape(arr, (-1, 1))
-    print(arr)
     return sitk.GetImageFromArray(arr)
 
 
+def image_to_fiducials(image_file_name):
+    image = sitk.ReadImage(image_file_name)
+    print(sitk.GetArrayFromImage(image))
+
+
+# Returns ['RE', 'LE']
+def get_fiducial_keys():
+    fids = []
+    with open(fiducials_json_path, "rb") as f:
+        fids = json.load(f)['fiducials']
+    return fids
+
+
+# returns "_RE_LE"
+def get_fiducial_file_identifier():
+    fid_file_identifier = ""
+    fids = get_fiducial_keys()
+    for fid in fids:
+        fid_file_identifier += "_" + fid
+    return fid_file_identifier
+
+
+def validate_output_image(correct_image, output_image_file_name):
+    image = sitk.ReadImage(output_image_file_name)
+
+    correct_arr = sitk.GetArrayFromImage(correct_image)
+    output_arr = sitk.GetArrayFromImage(image)
+
+    try:
+        assert(correct_arr == output_arr)
+    except AssertionError as _:
+        logger.log(output_image_file_name + " incorrectly written.")
+
+
+
+
+
+#        expected_output_array += fiducial_ordered_dict[fid_key].tolist()
+#    print(expected_output_array)
+#    image = sitk.ReadImage(output_image_file_name)
+#    pt_list = image.TransformPhysicalPointToIndex(expected_output_array[0:3])
+#    print("pt_list = " + pt_list)
+
+
+    # image_to_fiducials(output_image_file_name)
+
+
+
 def main(argv):
-    # input: ../SmallData/0001_27588.fcsv
-
-    # something for ../SmallData
-    # something for 0001_27588_t1w.nii.gz
-
-    print(argv)
     base, _ = os.path.splitext(argv.fcsv)
-
+    base, _ = os.path.splitext(base)
+    
     fiducial_points = extract_fiducials(argv.fcsv)
-    print(fiducial_points)
 
     output_image = fiducials_to_image(fiducial_points, argv.image)
-    with open("./fiducials.json", 'rb') as f:
-        pts = json.load(f)['fiducials']
 
-    output_file_name = "{base}_{fids}.nii.gz".format(base=base, fids="_".join(pts))
+    output_file_name = "{base}{fids}.nii.gz".format(base=base, fids=get_fiducial_file_identifier())
     print("Writing to " + output_file_name)
     sitk.WriteImage(output_image, output_file_name)
-    # print(sitk.GetArrayFromImage(output_image))
-    im = sitk.ReadImage(output_file_name)
-    print(sitk.GetArrayFromImage(im))
-
+    print("Validating fiducial output image")
+    validate_output_image(output_image, output_file_name)
 
 if __name__ == "__main__":
     main(extract_args())
