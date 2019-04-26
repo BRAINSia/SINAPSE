@@ -17,7 +17,7 @@ Clone the BRAINSia/NiftyNet repo, this is where we will be doing our work to add
 ```bash
 cd ~
 git clone git@github.com:BRAINSia/NiftyNet.git
-cd NiftyNet && git checkout landmark_app
+cd NiftyNet && git checkout landmark_app_20190405
 
 ```
 
@@ -29,5 +29,4 @@ cd 20190329_FiducialFinder/
 ```
 
 #### Helpful Docs
-[git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) .
 [coursera landmark detection video](https://www.coursera.org/lecture/convolutional-neural-networks/landmark-detection-OkD3X)
