@@ -11,7 +11,7 @@ import pandas as pd
 import csv
 from fiducial_to_image import extract_fiducials
 import ntpath
-
+import argparse
 
 # In[76]:
 
@@ -62,17 +62,31 @@ def get_expected_fiducial_data(file_path):
     return expected_fiducial_data
 
 
+def fiducials_from_image(image_file_name):  
+    print(image_file_name)
+    image = sitk.ReadImage("..SmallDataTest/" + image_file_name)
+    arr = sitk.GetArrayFromImage(image)
+    return arr
+
+
+def image_name_from_fcsv(fcsv_path):
+    fcsv_file_name = ntpath.basename(fcsv_path)
+    base, _ = os.path.splitext(fcsv_file_name)
+    return base + get_fiducial_file_identifier() + ".nii.gz"
+
 # In[58]:
+def extract_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--fcsv", help="The path to the .fcsv file", required=True)
+    return parser.parse_args()
 
 
-def main():
-    file_path = "../SmallDataTest/0001_27588.fcsv"
-    print(get_expected_fiducial_data(file_path))
-
-
-# In[59]:
+def main(argv):
+    #file_path = "../SmallDataTest/0001_27588.fcsv"
+    print(get_expected_fiducial_data(argv.fcsv))
+    print(fiducials_from_image(image_name_from_fcsv(argv.fcsv)))
 
 
 if __name__ == "__main__":
-    main()
+    main(extract_args())
 

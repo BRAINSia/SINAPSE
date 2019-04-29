@@ -9,7 +9,10 @@ import logging
 
 fiducials_json_path = "./fiducials.json"
 
-logger = logging.Logger("failed_conversions.log", level=logging.DEBUG)
+
+logger = logging.getLogger("fid_to_img")
+config = logging.basicConfig(filename="failed_conversions.log", level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s')
+
 
 def extract_args():
     parser = argparse.ArgumentParser()
@@ -34,7 +37,6 @@ def fiducials_to_image(fiducial_points, image_file_name):
     pt_list = []
     image = sitk.ReadImage(image_file_name)
     for pt in fiducial_points.values():
-        print("pt = " + str(pt))
         pt_list += image.TransformPhysicalPointToIndex(pt)
 
     arr = np.array(pt_list)
@@ -44,7 +46,6 @@ def fiducials_to_image(fiducial_points, image_file_name):
 
 def image_to_fiducials(image_file_name):
     image = sitk.ReadImage(image_file_name)
-    print(sitk.GetArrayFromImage(image))
 
 
 # Returns ['RE', 'LE']
@@ -71,22 +72,11 @@ def validate_output_image(correct_image, output_image_file_name):
     output_arr = sitk.GetArrayFromImage(image)
 
     try:
-        assert(correct_arr == output_arr)
+        assert(correct_arr.all() == output_arr.all())
     except AssertionError as _:
-        logger.log(output_image_file_name + " incorrectly written.")
-
-
-
-
-
-#        expected_output_array += fiducial_ordered_dict[fid_key].tolist()
-#    print(expected_output_array)
-#    image = sitk.ReadImage(output_image_file_name)
-#    pt_list = image.TransformPhysicalPointToIndex(expected_output_array[0:3])
-#    print("pt_list = " + pt_list)
-
-
-    # image_to_fiducials(output_image_file_name)
+        logging.error(output_image_file_name + " incorrectly written."
+                                       "\nExpected: " + str(correct_arr) +
+                                        "\nActual: " + str(output_arr))
 
 
 

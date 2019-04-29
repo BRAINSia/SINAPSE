@@ -19,6 +19,7 @@ fi
 # script here
 EXT="_t1w.nii.gz"
 IMAGE_DIR=$1
+#IMAGE_DIR=../SmallDataTest/
 
 if [[ $# -eq 2 ]]; then
 	EXT=$2
