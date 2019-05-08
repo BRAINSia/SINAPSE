@@ -70,4 +70,4 @@ class TestLandmark1Net(BaseNet):
         print(flow.shape)
         flow = fc_2(flow, is_training)
         print(flow.shape)
-        return flow
+        return flow  # Flow should be coordinates of LE and RE
