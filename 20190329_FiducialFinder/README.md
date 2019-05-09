@@ -33,3 +33,6 @@ cd 20190329_FiducialFinder/
 
 ### Explanation of Project/Next Steps
 [Landmark Application PowerPoint](https://docs.google.com/presentation/d/14Jy9_Uk4HuA6hSIgpnmZBGoT7NCk1DFTTiyHCKAQTWE/edit?usp=sharing)
+
+### Our NiftyNet Fork
+[landmark_app_20190405 branch of NiftyNet](https://github.com/BRAINSia/NiftyNet/tree/landmark_app_20190405)
