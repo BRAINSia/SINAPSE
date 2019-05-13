@@ -4,7 +4,7 @@ from niftynet.layer.convolution import ConvolutionalLayer
 from niftynet.layer.fully_connected import FullyConnectedLayer
 from niftynet.network.base_net import BaseNet
 
-
+# The network
 class TestLandmark1Net(BaseNet):
     def __init__(self,
                  num_classes=6,
