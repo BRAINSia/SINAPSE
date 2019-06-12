@@ -1,3 +1,5 @@
+# Kevin Knoernschild
+
 import slicer #this import statement has to be commented out for the time being when generating html docs
 import time
 import argparse
