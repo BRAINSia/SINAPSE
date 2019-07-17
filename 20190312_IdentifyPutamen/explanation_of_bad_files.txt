@@ -1,4 +1,0 @@
-/Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0008s0003_c0008s0003t01_lr_combined_dense_seg.nii.gz: Both putamen identified.  One is just pushed forward and is oddly small.
-/Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/s2736_s2736_sess_lr_combined_dense_seg.nii.gz: Both putamen identified. One is just oddly shaped.
-/Shared/johnsonhj/2018Projects/20181002_LesionMappingBAW/20181017_niftinet_data_inputs/images/c0003s0024_c0003s0024t01_lr_combined_dense_seg.nii.gz: Both putamen identified.  One is just bigger than the other.
-
